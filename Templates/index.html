@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mission to Mars</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="jumbotron text-center">
+            <h1>Mission to Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        </div>
+
+        <!-- Latest Mars News Section-->
+        <div class="row">
+            <div class="col-md-12">
+                <h2>Latest Mars News</h2>
+                <h4>{{Mission_to_mars_dict.News_Title}}</h4>
+                <p>{{Mission_to_mars_dict.News_Text}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Featured Mars Image -->
+    <div class="container-fluid">
+        <div class="row" style="margin-left: 6cm;">
+            <div class="col-lg-8">
+                <h2>Featured Mars Image</h2>
+                <hr>
+                <img src="{{Mission_to_mars_dict.Featured_Image}}" style="max-width:800px">
+
+            </div>
+        <!-- Latest twet from Mars twweter page -->
+            <div class="col-lg-4">
+                <div class="card" style="width: 35rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Current Weather On Mars</h5>
+                        <p class="card-text">{{Mission_to_mars_dict.Mars_Tweet}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Table from Mars Facts Webpage -->
+            <div class="col-lg-4">
+                <div class="card" style="width: 35rem;">
+                    <div class="card-body">
+                        <h5 class="card-title"><b></b>More Facts</b></h5>
+                        <!-- safe argument required to render html table in browser -->
+                        <p class="card-text">{{Mission_to_mars_dict.More_Facts |safe}}</p>
+                    </div>
+                </div>
+            </div>
+            <!-- High resolution images of Mars Hemispheres -->
+            <div class="container-fluid text-center">
+                <div class="col-md-12">
+                    <h2>Mars Hemispheres</h2>
+                </div>
+                {% for image in Mission_to_mars_dict.Hemisphere_Images %}
+                <div class="col-md-6">
+                    <img src="{{image.image_url}}" class="img-thumbnail" style="margin-left: 0cm; margin-right: 2cm;">
+                    <h4>{{image.title}}</h4>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+</body>
+
+</html>
